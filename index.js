@@ -1,14 +1,22 @@
-const dropdownBtn = document.querySelector('.dropdown-btn');
+const dropdownBar = document.querySelector('.menu-bar');
 const dropdownMenu = document.querySelector('.dropdown-menu');
-const dropdownList = dropdownMenu.querySelector('ul');
-const dropdownElems = dropdownList.querySelectorAll('li');
 
-dropdownMenu.classList.toggle('hidden');
+// create css style \\
+(function() {
+    const style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = '.active { display: inline-block; }'
+    document.getElementsByTagName('head')[0].appendChild(style);
+})();
 
-dropdownBtn.addEventListener('mouseover', function() {
-    dropdownMenu.classList.toggle('hidden')
-})
+const toggleDropdown = (menu, bar) => {
+    menu.style.display = 'none';
+    bar.addEventListener('mouseover', function() {
+        menu.style.display = 'inline-block';
+    })
+    bar.addEventListener('mouseout', function() {
+        menu.style.display = 'none';
+    })
+}
 
-dropdownMenu.addEventListener('mouseout', function() {
-    dropdownMenu.classList.toggle('hidden')
-})
+toggleDropdown(dropdownMenu, dropdownBar);
